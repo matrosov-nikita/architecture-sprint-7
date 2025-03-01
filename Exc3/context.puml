@@ -1,0 +1,27 @@
+@startuml
+title PropDevelopment Smart System (Context diagram)
+
+top to bottom direction
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+Person(user, "Собственник", "Собственник")
+System_Ext(SmartIntercom,  "Интеллектуальный домофон", "Распознавание лиц для доступа в дом и автоматическое открытие двери", "Uses HTTPS")
+System_Ext(SmartBarrier,  "Интеллектуальный шлагбаум", "Автоматическое открытие по номеру авто", "Uses HTTPS")
+ContainerDb(Database, "База данных", "Хранит информацию по услугам для собственников", "PostgreSQL")
+
+System(MobileApp, "Mobile App", "Мобильное приложение для собственников")
+System(SmartCoreSystem, "Smart Core System", "Система для предоставления услуг умного дома собственникам")
+
+Rel(user, MobileApp, "Отправляет запрос на добавление данных", "HTTPS, OAuth2.0")
+Rel(MobileApp, SmartCoreSystem, "Передаёт запрос на обработку", "HTTPS, OAuth2.0")
+
+Rel(SmartCoreSystem, SmartCoreSystem, "Проверка прав доступа (RBAC, OAuth2.0)")
+Rel(SmartCoreSystem, Database, "Записывает и читает данные собственников")
+
+Rel(SmartCoreSystem, SmartIntercom, "Добавление нового лица (если проверка пройдена)", "HTTPS")
+Rel(SmartCoreSystem, SmartBarrier, "Добавление номера авто (если проверка пройдена)", "HTTPS")
+
+Rel(SmartIntercom, SmartIntercom, "Открывает автоматически дверь")
+Rel(SmartBarrier, SmartBarrier, "Открывает автоматически шлагбаум")
+@enduml
