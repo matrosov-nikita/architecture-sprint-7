@@ -1,6 +1,6 @@
 #!/bin/bash
 
-USERS=("secure-operator" "cluster-viewer", "cluster-manager")
+USERS=("secure-operator" "cluster-viewer" "cluster-manager")
 DAYS_VALID=365
 K8S_CA_CRT="/etc/kubernetes/pki/ca.crt"
 K8S_CA_KEY="/etc/kubernetes/pki/ca.key"

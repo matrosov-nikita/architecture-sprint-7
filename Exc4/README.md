@@ -10,3 +10,4 @@
    - `kubectl auth can-i create pods --as=cluster-viewer -n development`, no
    - `kubectl auth can-i get pods --as=cluster-manager -n development`, yes
    - `kubectl auth can-i create pods --as=cluster-manager -n development`, yes
+   - `kubectl auth can-i get secrets --as=cluster-manager -n development`, no
