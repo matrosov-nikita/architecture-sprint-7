@@ -19,9 +19,9 @@ Rel(MobileApp, SmartCoreSystem, "Передаёт запрос на обрабо
 Rel(SmartCoreSystem, SmartCoreSystem, "Проверка прав доступа (RBAC, OAuth2.0)")
 Rel(SmartCoreSystem, Database, "Записывает и читает данные собственников")
 
-Rel(SmartCoreSystem, SmartIntercom, "Добавление нового лица (если проверка пройдена)", "HTTPS")
-Rel(SmartCoreSystem, SmartBarrier, "Добавление номера авто (если проверка пройдена)", "HTTPS")
+Rel(SmartCoreSystem, SmartIntercom, "Отправка команды на открытие домофона", "HTTPS")
+Rel(SmartCoreSystem, SmartBarrier, "Отправка команды на открытие шлагбаума", "HTTPS")
 
-Rel(SmartIntercom, SmartIntercom, "Открывает автоматически дверь")
-Rel(SmartBarrier, SmartBarrier, "Открывает автоматически шлагбаум")
+Rel(SmartIntercom, SmartCoreSystem, "Распознано лицо у домофона", "HTTPS")
+Rel(SmartBarrier, SmartCoreSystem, "Распознан номер автомобиля", "HTTPS")
 @enduml
